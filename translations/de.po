@@ -1,0 +1,13 @@
+# GErman translation of CKEditor Soft hyphen Plugin (&shy;)
+#
+msgid ""
+msgstr ""
+
+msgid "Soft hyphen"
+msgstr "Weicher Bindestrich"
+
+msgid "Cleanup SHY markup"
+msgstr "SHY-Markup bereinigen"
+
+msgid "Replaces <shy></shy> tag with &shy;."
+msgstr "Ersetzt den <shy></shy> Tag durch &shy;"

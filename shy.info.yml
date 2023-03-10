@@ -1,0 +1,12 @@
+name: 'CKEditor Soft hyphen Plugin'
+type: module
+description: 'Minimal module to insert a soft hyphen into the content by pressing Ctrl+Hyphen or using the provided button.'
+core_version_requirement: ^10
+package: CKEditor
+
+dependencies:
+  - drupal:editor
+  - drupal:ckeditor5
+
+interface translation project: shy
+interface translation server pattern: translations/%language.po
