@@ -10,8 +10,8 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-This is a simple module which can be used to insert a soft hyphen ```(&shy;)``` into the content using the provided button.
-During content creation, the author may add a soft hyphen ```(&shy;)``` to break words across lines.
+This is a simple module which can be used to insert a soft hyphen ```&shy;``` into the content using the provided button.
+During content creation, the author may add a soft hyphen ```&shy;``` to break words across lines.
 Soft hyphen is an invisible character.
 
 REQUIREMENTS
