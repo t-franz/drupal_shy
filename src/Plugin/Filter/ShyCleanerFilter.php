@@ -13,7 +13,7 @@ use Drupal\filter\Plugin\FilterBase;
  *
  * @Filter(
  *   id = "shy_cleaner_filter",
- *   title = @Translation("Cleanup SHY markup"),
+ *   title = @Translation("Soft-Hyphen-Tag"),
  *   description = @Translation("Replaces <code>&lt;shy&gt;&lt;/shy&gt;</code> tag with non-breaking space."),
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
  * )

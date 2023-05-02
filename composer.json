@@ -1,5 +1,5 @@
 {
-    "name": "t-franz/drupal-shy",
+    "name": "t-franz/shy",
     "description": "This is a simple module which can be used to insert a soft hyphen (&shy;) into the content using the provided button.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",

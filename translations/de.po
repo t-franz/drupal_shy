@@ -6,8 +6,8 @@ msgstr ""
 msgid "Soft hyphen"
 msgstr "Weicher Bindestrich"
 
-msgid "Cleanup SHY markup"
-msgstr "SHY-Markup bereinigen"
+msgid "Soft-Hyphen-Tag"
+msgstr "Tag für weichen Bindestrich"
 
 msgid "Replaces <shy></shy> tag with &shy;."
 msgstr "Ersetzt den <shy></shy> Tag durch &shy;"
