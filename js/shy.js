@@ -1,126 +1,98 @@
-(function (global, factory) {
-  if (typeof exports === 'object' && typeof module !== 'undefined') {
-    module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else {
-    global.CKEditor5 = global.CKEditor5 || {};
-    global.CKEditor5.shy = factory();
-  }
+! function(e, t) {
+  "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.CKEditor5 = t() : (e.CKEditor5 = e.CKEditor5 || {}, e.CKEditor5.shy = t())
 }(self, (() => (() => {
-  var modulesMap = {
-          "ckeditor5/src/core.js": (module, exports, requireFn) => {
-              module.exports = requireFn("dll-reference CKEditor5.dll")("./src/core.js")
+  var e = {
+          "ckeditor5/src/core.js": (e, t, r) => {
+              e.exports = r("dll-reference CKEditor5.dll")("./src/core.js")
           },
-          "ckeditor5/src/ui.js": (module, exports, requireFn) => {
-              module.exports = requireFn("dll-reference CKEditor5.dll")("./src/ui.js")
+          "ckeditor5/src/ui.js": (e, t, r) => {
+              e.exports = r("dll-reference CKEditor5.dll")("./src/ui.js")
           },
-          "dll-reference CKEditor5.dll": (module) => {
+          "dll-reference CKEditor5.dll": e => {
               "use strict";
-              module.exports = CKEditor5.dll
+              e.exports = CKEditor5.dll
           }
       },
-      modulesCache = {};
+      t = {};
 
-  function requireModule(moduleId) {
-      var cachedModule = modulesCache[moduleId];
-      if (cachedModule !== undefined) {
-        return cachedModule.exports;
-      }
-
-      var module = modulesCache[moduleId] = { exports: {} };
-      modulesMap[moduleId](module, module.exports, requireModule);
-      return module.exports;
+  function r(s) {
+      var o = t[s];
+      if (void 0 !== o) return o.exports;
+      var n = t[s] = {
+          exports: {}
+      };
+      return e[s](n, n.exports, r), n.exports
   }
-  requireModule.d = (exports, definition) => {
-      Object.keys(definition).forEach((key) => {
-        if (!requireModule.o(exports, key) && requireModule.o(definition, key)) {
-            Object.defineProperty(exports, key, {
-                enumerable: true,
-                get: definition[key]
-            });
-        }
-      });
-  };
-  requireModule.o = (object, property) => Object.prototype.hasOwnProperty.call(object, property);
-  var api = {};
+  r.d = (e, t) => {
+      for (var s in t) r.o(t, s) && !r.o(e, s) && Object.defineProperty(e, s, {
+          enumerable: !0,
+          get: t[s]
+      })
+  }, r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t);
+  var s = {};
   return (() => {
       "use strict";
-      requireModule.d(api, {
-          default: () => ShyPlugin
+      r.d(s, {
+          default: () => c
       });
-      var core = requireModule("ckeditor5/src/core.js");
-      class InsertShyCommand extends core.Command {
+      var e = r("ckeditor5/src/core.js");
+      class t extends e.Command {
           execute() {
-              this.editor.model.change((writer) => {
-                  const viewFragment = this.editor.data.processor.toView("<shy>&shy;</shy>");
-                  const modelFragment = this.editor.data.toModel(viewFragment);
-                  this.editor.model.insertContent(modelFragment);
-              });
+              this.editor.model.change((e => {
+                  const t = this.editor.data.processor.toView("<shy>&shy;</shy>"),
+                      r = this.editor.data.toModel(t);
+                  this.editor.model.insertContent(r)
+              }))
           }
       }
-
-      class ShyPlugin extends core.Plugin {
+      class o extends e.Plugin {
           _defineSchema() {
               this.editor.model.schema.register("shy", {
                   allowWhere: "$text",
-                  isInline: true
-              });
+                  isInline: !0
+              })
           }
-
           _defineConverters() {
               this.editor.conversion.elementToElement({
                   model: "shy",
                   view: "shy"
-              });
+              })
           }
-
           init() {
-              const editor = this.editor;
-              this.editor.commands.add("shy", new InsertShyCommand(this.editor));
-              this._defineSchema();
-              this._defineConverters();
-
-              editor.keystrokes.set(["ctrl", 45], (data, stopCallback) => {
-                  editor.commands.execute("shy");
-                  stopCallback();
-              });
+              const e = this.editor;
+              this.editor.commands.add("shy", new t(this.editor)), this._defineSchema(), this._defineConverters(), e.keystrokes.set(["ctrl", 45], ((t, r) => {
+                  e.commands.execute("shy"), r()
+              }))
           }
       }
-
-      var ui = requireModule("ckeditor5/src/ui.js");
-      class ShyButtonPlugin extends core.Plugin {
+      var n = r("ckeditor5/src/ui.js");
+      class i extends e.Plugin {
           init() {
-              const editor = this.editor;
-              editor.ui.componentFactory.add("shy", (locale) => {
-                  const view = new ui.ButtonView(locale);
-                  view.set({
+              const e = this.editor;
+              e.ui.componentFactory.add("shy", (t => {
+                  const r = new n.ButtonView(t);
+                  return r.set({
                       label: "Insert non-breaking space",
                       icon: '<svg viewBox="0 0 32 30" width="32" height="30" xmlns="http://www.w3.org/2000/svg"><path d="m5.6 14.8c0-3.5 1-6.4 2.6-9.2l2.2.9c-1.4 2.6-2 5.5-2 8.3s.6 5.7 2 8.3l-2.1.9c-1.7-2.8-2.7-5.7-2.7-9.2z"/><path d="m12.3 14.2h7.8v2.2h-7.8z"/><path d="m22.1 23.1c1.4-2.6 2-5.5 2-8.3s-.6-5.7-2-8.3l2.2-.9c1.7 2.8 2.6 5.6 2.6 9.2 0 3.5-1 6.4-2.6 9.2z"/></svg>',
-                      tooltip: true
-                  });
-                  view.on("execute", () => {
-                      editor.model.change((writer) => {
-                          editor.commands.execute("shy");
-                      });
-                  });
-                  return view;
-              });
+                      tooltip: !0
+                  }), r.on("execute", (() => {
+                      e.model.change((t => {
+                          e.commands.execute("shy")
+                      }))
+                  })), r
+              }))
           }
       }
-
-      class ShyPluginWrapper extends core.Plugin {
+      class d extends e.Plugin {
           static get pluginName() {
               return "Shy"
           }
-
           static get requires() {
-              return [ShyPlugin, ShyButtonPlugin]
+              return [o, i]
           }
       }
-      const exportedPlugins = {
-          Shy: ShyPluginWrapper
+      const c = {
+          Shy: d
       }
-      return exportedPlugins;
-  })(), api = api.default
-})())));
+  })(), s = s.default
+})()));
